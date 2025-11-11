@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: API de Países
+  description: 'Esta é uma API para consumir dados da REST Countries API, permitindo buscar informações de países e salvá-las localmente.'
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Servidor de Desenvolvimento
+paths:
+  /countries/{name}:
+    get:
+      summary: Busca um país pelo nome
+      description: Retorna as informações de um país diretamente da API externa (REST Countries) com base no nome fornecido.
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: O nome do país a ser buscado (ex Brazil)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sucesso. Retorna uma lista de países correspondentes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        '404':
+          description: País não encontrado.
+  /countries:
+    get:
+      summary: Lista todos os países salvos localmente
+      description: Retorna uma lista de todos os países que foram previamente salvos no banco de dados local.
+      responses:
+        '200':
+          description: Sucesso. Retorna a lista de países salvos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+    post:
+      summary: Busca e salva todos os países
+      description: Aciona um processo para buscar todos os países da API externa e salvá-los no banco de dados local. O corpo da requisição é vazio.
+      responses:
+        '200':
+          description: Processo iniciado com sucesso.
+components:
+  schemas:
+    CountryDTO:
+      type: object
+      properties:
+        name:
+          type: object
+          properties:
+            common:
+              type: string
+              example: Brazil
+            official:
+              type: string
+              example: Federative Republic of Brazil
+        capital:
+          type: array
+          items:
+            type: string
+          example: ["Brasília"]
+        region:
+          type: string
+          example: Americas
+        subregion:
+          type: string
+          example: South America
+        population:
+          type: integer
+          example: 212559417
+    Country:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        commonName:
+          type: string
+          example: Brazil
+        officialName:
+          type: string
+          example: Federative Republic of Brazil
+        capital:
+          type: string
+          example: "Brasília"
+        region:
+          type: string
+          example: Americas
+        subregion:
+          type: string
+          example: South America
+        population:
+          type: integer
+          example: 212559417
