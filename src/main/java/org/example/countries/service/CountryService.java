@@ -33,8 +33,8 @@ public class CountryService {
         return countryRepository.findAll();
     }
 
-    public List<CountryDTO> getCountryByName(String name) {
-        return countryClient.getCountryByName(name);
+    public List<Country> getCountryByName(String name) {
+        return countryRepository.findByCommonNameContainingIgnoreCase(name);
     }
 
     public void fetchAndSaveCountryByName(String name) {

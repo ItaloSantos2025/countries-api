@@ -33,8 +33,8 @@ public class CountryController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<CountryDTO>> getCountryByName(@PathVariable String name) {
-        List<CountryDTO> countries = countryService.getCountryByName(name);
+    public ResponseEntity<List<Country>> getCountryByName(@PathVariable String name) {
+        List<Country> countries = countryService.getCountryByName(name);
         return ResponseEntity.ok(countries);
     }
 
