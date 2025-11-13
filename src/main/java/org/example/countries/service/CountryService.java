@@ -51,7 +51,6 @@ public class CountryService {
 
     private Country convertToEntity(CountryDTO dto) {
         String capital = (dto.getCapital() != null && dto.getCapital().length > 0) ? Arrays.toString(dto.getCapital()) : "N/A";
-        // Remove brackets from the capital string
         capital = capital.replace("[", "").replace("]", "");
         return new Country(
                 dto.getName().getCommon(),
