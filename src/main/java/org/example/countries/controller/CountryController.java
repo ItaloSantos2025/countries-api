@@ -1,6 +1,6 @@
 package org.example.countries.controller;
 
-import org.example.countries.dto.CountryDTO;
+import org.example.countries.dto.CountryDto;
 import org.example.countries.entity.Country;
 import org.example.countries.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +45,8 @@ public class CountryController {
     }
 
     @GetMapping("/external/{name}")
-    public ResponseEntity<List<CountryDTO>> getCountryFromExternalApi(@PathVariable String name) {
-        List<CountryDTO> countries = countryService.getCountryFromExternalApi(name);
+    public ResponseEntity<List<CountryDto>> getCountryFromExternalApi(@PathVariable String name) {
+        List<CountryDto> countries = countryService.getCountryFromExternalApi(name);
         return ResponseEntity.ok(countries);
     }
 }

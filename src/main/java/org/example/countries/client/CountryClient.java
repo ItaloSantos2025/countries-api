@@ -1,6 +1,6 @@
 package org.example.countries.client;
 
-import org.example.countries.dto.CountryDTO;
+import org.example.countries.dto.CountryDto;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +12,8 @@ import java.util.List;
 public interface CountryClient {
 
     @GetMapping("/all")
-    List<CountryDTO> getAllCountries(@RequestParam("fields") String fields);
+    List<CountryDto> getAllCountries(@RequestParam("fields") String fields);
 
     @GetMapping("/name/{name}")
-    List<CountryDTO> getCountryByName(@PathVariable("name") String name);
+    List<CountryDto> getCountryByName(@PathVariable("name") String name);
 }

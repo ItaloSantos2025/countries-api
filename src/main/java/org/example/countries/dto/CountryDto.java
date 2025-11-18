@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CountryDTO {
+public class CountryDto {
 
     private Name name;
     private String[] capital;
